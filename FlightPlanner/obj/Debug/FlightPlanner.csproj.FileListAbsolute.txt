@@ -1,0 +1,14 @@
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/bin/Debug/FlightPlanner.exe.config
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/bin/Debug/FlightPlanner.exe
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/bin/Debug/FlightPlanner.pdb
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/obj/Debug/FlightPlanner.csproj.AssemblyReference.cache
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/obj/Debug/FlightPlanner.csproj.CoreCompileInputs.cache
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/obj/Debug/FlightPlanner.exe
+/Users/tobiasnes/Downloads/FlightPlanner-0-2.9-improvements/FlightPlanner/obj/Debug/FlightPlanner.pdb
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/bin/Debug/FlightPlanner.exe.config
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/bin/Debug/FlightPlanner.exe
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/bin/Debug/FlightPlanner.pdb
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/obj/Debug/FlightPlanner.csproj.AssemblyReference.cache
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/obj/Debug/FlightPlanner.csproj.CoreCompileInputs.cache
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/obj/Debug/FlightPlanner.exe
+/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/4BHIFFlighPlannerTobias/FlightPlanner/obj/Debug/FlightPlanner.pdb
