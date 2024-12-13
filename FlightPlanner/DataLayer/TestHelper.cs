@@ -16,7 +16,7 @@ namespace FlightPlanner.DataLayer
         {
             string sqlBatch = string.Empty;
 
-            string script = File.ReadAllText(@"..\..\DataLayer\FlightPlannerCreateDb.sql");
+            string script = File.ReadAllText(@"..\..\LegacyCode\FlightPlannerCreateDb.sql");
             script += "\nGO"; // make sure last batch is executed in the foreach loop
 
             using (DbConnection databaseConnection = new SqlConnection(connectionString))

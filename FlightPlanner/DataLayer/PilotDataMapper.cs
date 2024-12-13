@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace FlightPlanner.DataLayer
 {
@@ -15,86 +15,112 @@ namespace FlightPlanner.DataLayer
             this.ConnectionString = connectionString;
         }
 
-        private Dictionary<string, object> ParseRecord(IDataReader reader)
+        public List<Pilot> ReadPilots()
         {
-            var result = new Dictionary<string, object>();
-            for (int i = 0; i < reader.FieldCount; i++)
-            {
-                result[reader.GetName(i)] = reader.GetValue(i);
-            }
-            return result;
-        }
-
-        private List<Dictionary<string, object>> ReadPilots(string sqlCommandText)
-        {
-            var pilots = new List<Dictionary<string, object>>();
+            List<Pilot> pilots = new List<Pilot>();
 
             using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
             {
-                IDbCommand command = databaseConnection.CreateCommand();
-                command.CommandText = sqlCommandText;
+                IDbCommand selectPilotCommand = databaseConnection.CreateCommand();
+                selectPilotCommand.CommandText = "SELECT * FROM Pilot";
 
                 databaseConnection.Open();
-                using (IDataReader reader = command.ExecuteReader())
+                IDataReader pilotReader = selectPilotCommand.ExecuteReader();
+
+                while (pilotReader.Read())
                 {
-                    while (reader.Read())
+                    Pilot pilot = new Pilot();
+                    pilot.Id = pilotReader.GetInt32(0); // Column 0: Id
+                    pilot.FirstName = pilotReader.GetString(1); // Column 1: FirstName
+                    pilot.LastName = pilotReader.GetString(2); // Column 2: LastName
+                    pilot.ExperienceYears = pilotReader.GetInt32(3); // Column 3: ExperienceYears
+
+                    pilots.Add(pilot);
+                }
+
+                return pilots;
+            }
+        }
+
+        public Pilot Read(int id)
+        {
+            using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
+            {
+                IDbCommand selectPilotCommand = databaseConnection.CreateCommand();
+                selectPilotCommand.CommandText = $"SELECT * FROM Pilot WHERE Id = {id}";
+
+                databaseConnection.Open();
+                IDataReader pilotReader = selectPilotCommand.ExecuteReader();
+
+                if (pilotReader.Read())
+                {
+                    Pilot pilot = new Pilot
                     {
-                        pilots.Add(ParseRecord(reader));
-                    }
+                        Id = pilotReader.GetInt32(0),
+                        FirstName = pilotReader.GetString(1),
+                        LastName = pilotReader.GetString(2),
+                        ExperienceYears = pilotReader.GetInt32(3)
+                    };
+
+                    return pilot;
                 }
             }
 
-            return pilots;
+            return null;
         }
 
-        public List<Dictionary<string, object>> GetAllPilots()
-        {
-            return ReadPilots("SELECT * FROM Pilots;");
-        }
-
-        public Dictionary<string, object> GetPilotById(int pilotId)
-        {
-            string sqlCommandText = $"SELECT * FROM Pilots WHERE PilotId = {pilotId};";
-            var pilots = ReadPilots(sqlCommandText);
-            return pilots.Count > 0 ? pilots[0] : null;
-        }
-
-        public void AddPilot(string firstName, string lastName, string licenseNumber)
+        public int Create(Pilot pilot)
         {
             using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
             {
-                IDbCommand command = databaseConnection.CreateCommand();
-                command.CommandText = "INSERT INTO Pilots (FirstName, LastName, LicenseNumber) VALUES (@FirstName, @LastName, @LicenseNumber)";
+                IDbCommand createPilotCommand = databaseConnection.CreateCommand();
+                createPilotCommand.CommandText =
+                   $"INSERT INTO Pilot VALUES ({pilot.Id}, '{pilot.FirstName}', '{pilot.LastName}', {pilot.ExperienceYears});";
 
-                var param = command.CreateParameter();
-                param.ParameterName = "@FirstName";
-                param.Value = firstName;
-                command.Parameters.Add(param);
-
-                param = command.CreateParameter();
-                param.ParameterName = "@LastName";
-                param.Value = lastName;
-                command.Parameters.Add(param);
-
-                param = command.CreateParameter();
-                param.ParameterName = "@LicenseNumber";
-                param.Value = licenseNumber;
-                command.Parameters.Add(param);
-
+                Console.WriteLine(createPilotCommand.CommandText);
                 databaseConnection.Open();
-                command.ExecuteNonQuery();
+
+                int rowCount = createPilotCommand.ExecuteNonQuery();
+                return rowCount;
             }
         }
 
-        public void DeletePilot(int pilotId)
+        public int Update(Pilot pilot)
         {
             using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
             {
-                IDbCommand command = databaseConnection.CreateCommand();
-                command.CommandText = $"DELETE FROM Pilots WHERE PilotId = {pilotId};";
+                IDbCommand updatePilotCommand = databaseConnection.CreateCommand();
+                updatePilotCommand.CommandText =
+                   $"UPDATE Pilot SET FirstName = '{pilot.FirstName}', " +
+                   $"LastName = '{pilot.LastName}', " +
+                   $"ExperienceYears = {pilot.ExperienceYears} " +
+                   $"WHERE Id = {pilot.Id};";
 
+                Console.WriteLine(updatePilotCommand.CommandText);
                 databaseConnection.Open();
-                command.ExecuteNonQuery();
+
+                int rowCount = updatePilotCommand.ExecuteNonQuery();
+                return rowCount;
+            }
+        }
+
+        public int Delete(Pilot pilot)
+        {
+            return Delete(pilot.Id);
+        }
+
+        public int Delete(int id)
+        {
+            using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
+            {
+                IDbCommand deletePilotCommand = databaseConnection.CreateCommand();
+                deletePilotCommand.CommandText = $"DELETE FROM Pilot WHERE Id = {id};";
+
+                Console.WriteLine(deletePilotCommand.CommandText);
+                databaseConnection.Open();
+
+                int rowCount = deletePilotCommand.ExecuteNonQuery();
+                return rowCount;
             }
         }
     }
