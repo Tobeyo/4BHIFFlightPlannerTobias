@@ -18,7 +18,7 @@ namespace FlightPlanner.DataLayer
         public List<Pilot> ReadPilots()
         {
             List<Pilot> pilots = new List<Pilot>();
-
+    
             using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
             {
                 IDbCommand selectPilotCommand = databaseConnection.CreateCommand();
