@@ -76,7 +76,55 @@ namespace FlightPlanner.DataLayer
                 IDbCommand createPilotCommand = databaseConnection.CreateCommand();
                 createPilotCommand.CommandText =
                    $"INSERT INTO Pilot VALUES ({pilot.Id}, '{pilot.FirstName}', '{pilot.LastName}', {pilot.ExperienceYears});";
+                
+                
+                // 1. create a command object identifying the stored procedure
+                IDbCommand command = databaseConnection.CreateCommand();
+                command.CommandText = "dbo.BookFlight";
 
+                // 2. tell the command object to execute a stored procedure
+                command.CommandType = CommandType.StoredProcedure;
+
+                // 3. add parameter to command, which will be passed to the stored procedure
+                IDbDataParameter param;
+
+                param = command.CreateParameter();
+                param.ParameterName = "@FlightId";
+                param.DbType = DbType.Int32;
+                param.Value = pilot.Id;
+                param.Direction = ParameterDirection.Input;
+                command.Parameters.Add(param);
+
+                param = command.CreateParameter();
+                param.ParameterName = "@CustomerId";
+                param.DbType = DbType.Int32;
+                param.Value = pilot.FirstName;
+                param.Direction = ParameterDirection.Input;
+                command.Parameters.Add(param);
+
+                param = command.CreateParameter();
+                param.ParameterName = "@Seats";
+                param.DbType = DbType.Int32;
+                param.Value = pilot.LastName;
+                param.Direction = ParameterDirection.Input;
+                command.Parameters.Add(param);
+
+                param = command.CreateParameter();
+                param.ParameterName = "@TravelClass";
+                param.DbType = DbType.Int32;
+                param.Value = pilot.ExperienceYears;
+                param.Direction = ParameterDirection.Input;
+                command.Parameters.Add(param);
+
+                IDbDataParameter returnValue;
+                returnValue = command.CreateParameter();
+                returnValue.ParameterName = "@ReturnValue";
+                returnValue.DbType = DbType.Int32;
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Parameters.Add(returnValue);
+
+                databaseConnection.Open();
+                
                 Console.WriteLine(createPilotCommand.CommandText);
                 databaseConnection.Open();
 
