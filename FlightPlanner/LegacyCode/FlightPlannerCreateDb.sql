@@ -1,5 +1,5 @@
 declare @databaseName sysname;
-set @databaseName = 'FlightPlanner';
+set @databaseName = 'FlightPlannerRider';
 
 set nocount on;
 
@@ -70,7 +70,7 @@ IF OBJECT_ID('FK_Booking_Flight', 'F') IS NOT NULL
 	alter TABLE dbo.Booking drop constraint FK_Booking_Flight;
 
 
-select * from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
+--select * from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
 
 -- https://stackoverflow.com/questions/9565818/drop-if-exists-vs-drop
 -- Instead of OBJECT_ID: 
