@@ -29,7 +29,7 @@ namespace FlightPlanner.DataLayer
         {
             int rowCount = Int32.MinValue;
             try
-            {
+            {   
                 // FK_Booking_Flight uses "on delete no action"
                 // FK_PilotRoster_Flight uses "ON DELETE CASCADE"
                 rowCount = bookingDataMapper.DeleteByFlightId(id);
