@@ -30,8 +30,6 @@ namespace FlightPlanner.DataLayer
             int rowCount = Int32.MinValue;
             try
             {   
-                // FK_Booking_Flight uses "on delete no action"
-                // FK_PilotRoster_Flight uses "ON DELETE CASCADE"
                 rowCount = bookingDataMapper.DeleteByFlightId(id);
                 rowCount = flightDataMapper.Delete(id);
             }
@@ -51,6 +49,73 @@ namespace FlightPlanner.DataLayer
                 throw new InvalidOperationException("The specified flight could not be deleted.");
             }
         }
+        
+        public void CreateBooking(Booking booking)
+{
+    bookingDataMapper.Create(booking);
+}
+
+public int GetSeatsByFlightId(int flightId)
+{
+    using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
+    {
+        // Create the command for fetching the seats based on FlightId
+        IDbCommand seatCommand = databaseConnection.CreateCommand();
+
+        // SQL query to get the number of seats for the plane related to the FlightId
+        seatCommand.CommandText = @"
+            SELECT pt.Seats
+            FROM Flight f
+            INNER JOIN Plane p ON f.PlaneId = p.Id
+            INNER JOIN PlaneType pt ON p.PlaneTypeId = pt.Id
+            WHERE f.Id = @FlightId";
+
+        var flightIdParameter = seatCommand.CreateParameter();
+        flightIdParameter.ParameterName = "@FlightId";
+        flightIdParameter.Value = flightId;
+        seatCommand.Parameters.Add(flightIdParameter);
+
+        databaseConnection.Open();
+
+        object result = seatCommand.ExecuteScalar();
+
+        if (result == DBNull.Value || result == null)
+        {
+            return 0;
+        }
+
+        return Convert.ToInt32(result);
+    }
+}
+
+
+public int SumSeatsByFlightId(int flightId)
+{
+    using (DbConnection databaseConnection = new SqlConnection(this.ConnectionString))
+    {
+        IDbCommand sumSeatsCommand = databaseConnection.CreateCommand();
+        sumSeatsCommand.CommandText = "SELECT SUM(Seats) AS TotalSeats FROM Booking WHERE FlightId = @FlightId;";
+
+        var flightIdParameter = sumSeatsCommand.CreateParameter();
+        flightIdParameter.ParameterName = "@FlightId";
+        flightIdParameter.Value = flightId;
+        sumSeatsCommand.Parameters.Add(flightIdParameter);
+
+        databaseConnection.Open();
+
+        object result = sumSeatsCommand.ExecuteScalar();
+
+        // If no bookings exist for the FlightId, result will be DBNull.Value
+        if (result == DBNull.Value)
+        {
+            return 0; // No seats booked for this FlightId
+        }
+
+        return Convert.ToInt32(result); // Return the total number of seats
+    }
+}
 
     }
+    
+    
 }
