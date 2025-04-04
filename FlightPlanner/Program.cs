@@ -6,10 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlightPlanner.BusinessLogicLayer;
 
-
-
-
+//Es wurde an der Transaction aufgabe gearbeitet
 
 namespace FlightPlanner
 {
@@ -22,7 +21,7 @@ namespace FlightPlanner
             // Programm verwendet ADO.NET API Connected Layer, Alternativen: ADO.NET Disconnected Layer, ADO.NET Entity Framework
             try
             {
-                int rowCount = -2;
+               /* int rowCount = -2;
 
                 // Die Angabe der Verbindung zur Datenbank erfolgt immer via Connnections mit einem Connectionstring
                 // dieser ist manchmal aufwendig, DB-Herstellerdoku oder www.connectionstrings.com helfen
@@ -37,7 +36,7 @@ namespace FlightPlanner
                 // string connectionString = @"Data Source=delphin;Initial Catalog=FlightPlanner;Integrated Security=SSPI";
                 // string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDb;Initial Catalog=FlightPlanner;Integrated Security=false;uid=Reinhard;password=reinhard";
                 //string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDb;Initial Catalog=FlightPlanner;Integrated Security=SSPI";
-                string connectionString = @"Data Source=localhost,11433;Initial Catalog=FlightPlanner;User ID=sa;Password=youreComplexPassword!;";
+                string connectionString = @"Data Source=localhost,11433;Initial Catalog=FlightPlanner;User ID=sa;Password=yourComplexPassword!;";
                 
                 // The script to execute must not contain GO!
                 // Recreate the database each time the program is run so that we always work with the same data for testing
@@ -95,8 +94,17 @@ namespace FlightPlanner
                 {
                     Console.WriteLine($"{nameof(customerDataMapper.UpdateLastName)}: No rows were updated!");
                 }
+            */
+               string connectionString = @"Data Source=localhost,11433;Initial Catalog=FlightPlanner;User ID=sa;Password=yourComplexPassword!;";
 
-                
+               BookingService bookingService = new BookingService(connectionString);
+               int flightId = 1;
+               int customerId = 1;
+               int seats = int.Parse(Console.ReadLine());
+               int travelClass = 1;
+               decimal price = 40;
+               bookingService.BookFlight(flightId, customerId, seats, travelClass, price);
+               
             }
             catch (Exception ex)
             {
@@ -105,5 +113,9 @@ namespace FlightPlanner
             Console.WriteLine("Press enter to stop the program.");
             Console.ReadLine();
         }
+        
+        //Augabe: Finde heraus wie es möglich ist einen Flug in unserem Rrogramm zu überbuchen, dafür 2 mal das Programm starten. 
+        //Finde heraus wie diese 2 Programme ausgeführt werden müssen, um einen Flug zu überbuchen
+        //Erkläre wie es möglich ist, den Flug zu überbuchen. TIPP: Es gibt eine IF Abfrage, die überprüft ob genug Sitzplätze vorhanden sind.
     }
 }

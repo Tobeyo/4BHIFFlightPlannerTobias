@@ -16,8 +16,8 @@ namespace FlightPlanner.DataLayer
         {
             string sqlBatch = string.Empty;
 
-            string script = File.ReadAllText(@"..\..DataLayer\FlightPlannerCreateDb.sql");
-            script += "\nGO"; // make sure last batch is executed in the foreach loop
+            //string script = File.ReadAllText("/Users/tobiasnes/Developer/GitHub/4BHIFFlightPlannerTobias/FlightPlanner/LegacyCode/FlightPlannerCreateDb.sql");
+            //script += "\nGO"; // make sure last batch is executed in the foreach loop
 
             using (DbConnection databaseConnection = new SqlConnection(connectionString))
             {
@@ -28,7 +28,7 @@ namespace FlightPlanner.DataLayer
 
                 // A GO cannot be executed by ADO.NET
                 // If a GO ist found in a script split the script at this position into smaller scripts ("batches") and remove the GO. 
-                foreach (string line in script.Split(new string[2] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
+               /* foreach (string line in script.Split(new string[2] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (line.ToUpperInvariant().Trim() == "GO")
                     {
@@ -42,7 +42,7 @@ namespace FlightPlanner.DataLayer
                         // add next line to the batch
                         sqlBatch += line + "\n";
                     }
-                }
+                }*/
             }
         }
     }

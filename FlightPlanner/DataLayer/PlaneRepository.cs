@@ -15,6 +15,7 @@ namespace FlightPlanner.DataLayer
     {
         private PlaneDataMapper PlaneDataMapper;
         private PilotDataMapper PilotDataMapper;
+        private FlightDataMapper FlightDataMapper;
         // TODO: add other data mappers
         string ConnectionString { get; set; }
 
@@ -31,6 +32,7 @@ namespace FlightPlanner.DataLayer
             try
             {
                 rowCount = PlaneDataMapper.Delete(id);
+                //FlightDataMapper.Delete(DELETE from Flight where FLight.PlaneID = id );
             }
             catch (DbException dbEx) // TODO: review and improve exception handling
             {
