@@ -1,6 +1,6 @@
-import './Header.css';
+import './Header.css'
 
-function Header({ cartCount }) {
+function Header({ cartCount, onCartClick }) {
   return (
     <header className="header">
       <div className="header-content">
@@ -10,13 +10,13 @@ function Header({ cartCount }) {
         </div>
         <nav className="header-nav">
           <a href="#products" className="nav-link">Produkte</a>
-          <a href="#cart" className="cart-link">
+          <button className="cart-link" onClick={onCartClick}>
             🛒<span className="cart-count">{cartCount}</span>
-          </a>
+          </button>
         </nav>
       </div>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header
