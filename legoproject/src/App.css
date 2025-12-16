@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%) -10px 0,
+              linear-gradient(225deg, #f5f5f5 25%, transparent 25%) -10px 0,
+              linear-gradient(315deg, #f5f5f5 25%, transparent 25%),
+              linear-gradient(45deg, #f5f5f5 25%, transparent 25%);
+  background-size: 20px 20px;
+  background-color: #e8e8e8;
+}

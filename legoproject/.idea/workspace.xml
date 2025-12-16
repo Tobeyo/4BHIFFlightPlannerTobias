@@ -4,68 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c6978c-e266-4a21-b2e1-2a6a71f05329" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.4BHIFFlightPlannerTobias/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.FlightPlanner/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.FlightPlanner/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.FlightPlanner/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.FlightPlanner/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/.idea.FlightPlanner/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../4BHIFFlighPlannerTobias/.idea/.idea.4BHIFFlightPlannerTobias/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../4BHIFFlightPlannerTobias.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/App.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/BusinessLogicLayer/BookingService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/Booking.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/BookingDataMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/CustomerDataMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/Flight.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/FlightDataMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/FlightPlannerCreateDb.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/FlightRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/Pilot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/PilotDataMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/Plane.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/PlaneDataMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/PlaneRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/DataLayer/TestHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/FlightPlanner.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/LegacyCode/FlightPlannerCreateDb.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/bin/Debug/FlightPlanner.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/bin/Debug/FlightPlanner.exe.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/bin/Debug/FlightPlanner.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/FlightPlanner.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/FlightPlanner.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/FlightPlanner.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/FlightPlanner.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FlightPlanner/obj/Debug/FlightPlanner.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vite.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/react.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProductCard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProductCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProductOverview.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProductOverview.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="61c6978c-e266-4a21-b2e1-2a6a71f05329" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,26 +21,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/tobiasnesvadba/Developer/GitHub/4BHIFFlightPlannerTobias/legoproject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.npm dev.executor": "Run",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tobiasnesvadba/Developer/GitHub/4BHIFFlightPlannerTobias/legoproject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="npm dev" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -130,7 +69,6 @@
       <updated>1763448599671</updated>
       <workItem from="1763448600730" duration="3111000" />
       <workItem from="1763454414868" duration="9000" />
-      <workItem from="1765873527933" duration="800000" />
     </task>
     <servers />
   </component>
