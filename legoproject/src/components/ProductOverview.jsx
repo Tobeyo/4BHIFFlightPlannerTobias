@@ -17,13 +17,13 @@ function ProductOverview({ products, onAddToCart, onViewDetails }) {
       <div className="product-grid">
         {customMap(products, (product) => (
           <ProductCard
-            key={product.id}
+            key={product._id}
             image={product.image}
             title={product.title}
             price={product.price}
             pieces={product.pieces}
-            onViewDetails={() => onViewDetails(product.id)}
-            onAddToCart={() => onAddToCart(product.id)}
+            onViewDetails={() => onViewDetails(product._id)}
+            onAddToCart={() => onAddToCart(product._id)}
           />
         ))}
       </div>

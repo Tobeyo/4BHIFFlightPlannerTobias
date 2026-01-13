@@ -21,7 +21,7 @@ function ProductDetail({ product, onAddToCart, onClose }) {
           <div className="detail-actions">
             <button
               className="btn btn-primary"
-              onClick={() => onAddToCart(product.id)}
+              onClick={() => onAddToCart(product._id)}
             >
               In den Warenkorb
             </button>

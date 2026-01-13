@@ -1,41 +1,48 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Header from './components/Header'
 import ProductOverview from './components/ProductOverview'
 import ProductDetail from './components/ProductDetail'
 import Cart from './components/Cart'
+import { productService, cartService } from './services/api'
 import './App.css'
 
-const products = [
-  {
-    id: 1,
-    title: 'City Police Station',
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=600&fit=crop',
-    price: 99.99,
-    description: 'Großes City-Hauptquartier mit Hubschrauberlandeplatz, Polizeiwagen und vier Minifiguren.',
-    pieces: 823,
-  },
-  {
-    id: 2,
-    title: 'City Fire Truck',
-    image: 'https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=800&h=600&fit=crop',
-    price: 49.99,
-    description: 'Einsatzbereit mit ausfahrbarer Leiter, Wasserschlauch und mutiger Feuerwehrcrew.',
-    pieces: 489,
-  },
-  {
-    id: 3,
-    title: 'City Passenger Train',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-    price: 149.99,
-    description: 'Motorisierter Zug mit Bahnsteig, Schienenoval und integrierter Fernsteuerung.',
-    pieces: 1189,
-  },
-]
-
 function App() {
+  const [products, setProducts] = useState([])
   const [cartItems, setCartItems] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  // Produkte und Warenkorb beim Start laden
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true)
+        const [productsData, cartData] = await Promise.all([
+          productService.getAll(),
+          cartService.getCart()
+        ])
+        setProducts(productsData)
+        // Cart Items mit Produktdaten mappen
+        const items = cartData.items?.map(item => ({
+          id: item.product._id,
+          title: item.product.title,
+          image: item.product.image,
+          price: item.product.price,
+          pieces: item.product.pieces,
+          quantity: item.quantity
+        })) || []
+        setCartItems(items)
+      } catch (err) {
+        setError(err.message)
+        console.error('Fehler beim Laden:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadData()
+  }, [])
 
   const openCart = () => {
     setIsCartOpen(true)
@@ -54,41 +61,94 @@ function App() {
     [cartItems],
   )
 
-  const handleAddToCart = (productId) => {
-    const product = products.find((p) => p.id === productId)
+  const handleAddToCart = async (productId) => {
+    const product = products.find((p) => p._id === productId)
     if (!product) return
 
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === productId)
-      if (existing) {
-        return prev.map((item) =>
-          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item,
-        )
-      }
-      return [...prev, { ...product, quantity: 1 }]
-    })
-    openCart()
+    try {
+      const cartData = await cartService.addItem(productId)
+      const items = cartData.items?.map(item => ({
+        id: item.product._id,
+        title: item.product.title,
+        image: item.product.image,
+        price: item.product.price,
+        pieces: item.product.pieces,
+        quantity: item.quantity
+      })) || []
+      setCartItems(items)
+      openCart()
+    } catch (err) {
+      console.error('Fehler beim Hinzufügen:', err)
+    }
   }
 
   const handleViewDetails = (productId) => {
-    const product = products.find((p) => p.id === productId)
+    const product = products.find((p) => p._id === productId)
     setSelectedProduct(product || null)
   }
 
   const handleCloseDetails = () => setSelectedProduct(null)
 
-  const handleUpdateQuantity = (productId, quantity) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === productId ? { ...item, quantity: Math.max(1, quantity) } : item,
-        )
-        .filter((item) => item.quantity > 0),
+  const handleUpdateQuantity = async (productId, quantity) => {
+    if (quantity < 1) {
+      handleRemoveFromCart(productId)
+      return
+    }
+
+    try {
+      const cartData = await cartService.updateQuantity(productId, quantity)
+      const items = cartData.items?.map(item => ({
+        id: item.product._id,
+        title: item.product.title,
+        image: item.product.image,
+        price: item.product.price,
+        pieces: item.product.pieces,
+        quantity: item.quantity
+      })) || []
+      setCartItems(items)
+    } catch (err) {
+      console.error('Fehler beim Aktualisieren:', err)
+    }
+  }
+
+  const handleRemoveFromCart = async (productId) => {
+    try {
+      const cartData = await cartService.removeItem(productId)
+      const items = cartData.items?.map(item => ({
+        id: item.product._id,
+        title: item.product.title,
+        image: item.product.image,
+        price: item.product.price,
+        pieces: item.product.pieces,
+        quantity: item.quantity
+      })) || []
+      setCartItems(items)
+    } catch (err) {
+      console.error('Fehler beim Entfernen:', err)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="app">
+        <Header cartCount={0} onCartClick={() => {}} />
+        <main style={{ padding: '2rem', textAlign: 'center' }}>
+          <p>Produkte werden geladen...</p>
+        </main>
+      </div>
     )
   }
 
-  const handleRemoveFromCart = (productId) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== productId))
+  if (error) {
+    return (
+      <div className="app">
+        <Header cartCount={0} onCartClick={() => {}} />
+        <main style={{ padding: '2rem', textAlign: 'center' }}>
+          <p style={{ color: 'red' }}>Fehler: {error}</p>
+          <p>Stelle sicher, dass das Backend läuft (npm run dev im backend Ordner)</p>
+        </main>
+      </div>
+    )
   }
 
   return (
@@ -100,6 +160,11 @@ function App() {
           onAddToCart={handleAddToCart}
           onViewDetails={handleViewDetails}
         />
+        <ProductDetail
+          product={selectedProduct}
+          onAddToCart={handleAddToCart}
+          onClose={handleCloseDetails}
+        />
         <Cart
           id="cart"
           items={cartItems}
@@ -110,11 +175,6 @@ function App() {
           total={cartTotal}
         />
       </main>
-      <ProductDetail
-        product={selectedProduct}
-        onAddToCart={handleAddToCart}
-        onClose={handleCloseDetails}
-      />
     </div>
   )
 }
